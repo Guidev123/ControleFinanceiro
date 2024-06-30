@@ -1,4 +1,5 @@
-﻿using ControleFinanceiro.API.Notifications;
+﻿using ControleFinanceiro.API.Handlers;
+using ControleFinanceiro.Core.Handlers;
 using ControleFinanceiro.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,11 +9,9 @@ namespace ControleFinanceiro.API.Configuration
     {
         public static void ResolveDependencies(this IServiceCollection services, IConfiguration configuration) 
         {
-            services.AddScoped<INotificator, Notificator>();
 
-            // DB CONTEXT CONFIG
-            var connectionStr = configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionStr));
+            // HANDLER
+            services.AddTransient<ICategoryHandler, CategoryHandler>();
 
         }
     }

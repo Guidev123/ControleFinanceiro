@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace ControleFinanceiro.Core.Services
 {
-    public class PagedService<TData> : Service<TData>
+    public class PagedResponse<TData> : Response<TData>
     {
         [JsonConstructor]
-        public PagedService(TData? data, int code = 200, string? message = null) : base(data, code, message)
+        public PagedResponse(TData? data, int code = 200, string? message = null) : base(data, code, message)
         {
             
         }
 
-        public PagedService(TData? data, int totalCount, int currentPage, int pageSize)
+        public PagedResponse(TData? data, int totalCount, int currentPage, int pageSize)
         {
             Data = data;
             TotalCount = totalCount;

@@ -10,8 +10,6 @@ builder.Configuration
     .AddEnvironmentVariables();
 //================================================ End ========================================================/
 
-var connectionStr = builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(x =>
@@ -20,6 +18,9 @@ builder.Services.AddSwaggerGen(x =>
 });
 
 builder.Services.ResolveDependencies(builder.Configuration);
+
+builder.Services.CustomConfigurationAPI(builder.Configuration);
+
 
 var app = builder.Build();
 

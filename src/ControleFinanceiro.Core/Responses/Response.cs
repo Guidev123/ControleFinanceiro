@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace ControleFinanceiro.Core.Responses
 {
-    public class Service<TData>
+    public class Response<TData>
     {
         private const int DEFAULT_STATUS_CODE = 200;
         private readonly int _code;
 
         [JsonConstructor]
-        public Service() => _code = DEFAULT_STATUS_CODE;
+        public Response() => _code = DEFAULT_STATUS_CODE;
 
-        public Service(TData? data, int code = DEFAULT_STATUS_CODE, string? message = null)
+        public Response(TData? data, int code = DEFAULT_STATUS_CODE, string? message = null)
         {
             Data = data;
             Message = message;
