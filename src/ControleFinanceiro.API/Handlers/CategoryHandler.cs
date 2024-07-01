@@ -10,7 +10,6 @@ namespace ControleFinanceiro.API.Handlers
 {
     public class CategoryHandler(AppDbContext _context) : ICategoryHandler
     {
-
         public async Task<PagedResponse<List<Category>>> GetAllAsync(GetAllCategoryCommand command)
         {
             try 
