@@ -1,6 +1,7 @@
 ﻿using ControleFinanceiro.API.Handlers;
 using ControleFinanceiro.Core.Handlers;
 using ControleFinanceiro.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace ControleFinanceiro.API.Configuration
@@ -11,7 +12,16 @@ namespace ControleFinanceiro.API.Configuration
         {
 
             // HANDLER
+
             services.AddTransient<ICategoryHandler, CategoryHandler>();
+            services.AddTransient<ITransactionHandler, TransactionHandler>();
+
+            // IDENTITY
+
+            services.AddAuthentication(IdentityConstants.ApplicationScheme)
+                .AddIdentityCookies();
+
+            services.AddAuthorization();
 
         }
     }
