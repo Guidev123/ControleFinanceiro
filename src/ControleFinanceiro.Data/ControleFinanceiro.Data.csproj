@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ControleFinanceiro.Core\ControleFinanceiro.Core.csproj" />
+
   </ItemGroup>
 
 </Project>
