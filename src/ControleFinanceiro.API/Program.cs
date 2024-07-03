@@ -1,5 +1,5 @@
 using ControleFinanceiro.API.Configuration;
-using ControleFinanceiro.Data;
+using ControleFinanceiro.API.Extensions;
 
 //========================================== Environment Configure ===============================================/
 var builder = WebApplication.CreateBuilder(args);
@@ -10,28 +10,21 @@ builder.Configuration
     .AddEnvironmentVariables();
 //================================================ End ========================================================/
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(x =>
-{
-    x.CustomSchemaIds(n => n.FullName);
-});
 
+builder.Services.AddSecurityConfig();
+builder.Services.AddDbContextsConfig(builder.Configuration);
+builder.AddCorsConfig();
+builder.Services.AddDocumentationConfig(builder.Configuration);
 builder.Services.ResolveDependencies(builder.Configuration);
 
-builder.Services.CustomConfigurationAPI(builder.Configuration);
 
 
 var app = builder.Build();
-
-
-app.UseSwagger();
-app.UseSwaggerUI();
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
+if (app.Environment.IsDevelopment())
+{
+    app.UseConfigureDevEnvironmentConfig();
+}
+app.UseCors(CorsPolicy.CorsPolicyName);
+app.UseSecurityConfig();
+app.UseIdentityEndPointsConfig();
 app.Run();

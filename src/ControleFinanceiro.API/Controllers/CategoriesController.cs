@@ -2,18 +2,24 @@
 using ControleFinanceiro.Core.Entities;
 using ControleFinanceiro.Core.Handlers;
 using ControleFinanceiro.Core.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata;
+using System.Security.Claims;
 
 namespace ControleFinanceiro.API.Controllers
 {
     [Route("api/categories")]
+    [Authorize]
     public class CategoriesController : MainController
     {
         private readonly ICategoryHandler _categoryHandler;
-        public CategoriesController(ICategoryHandler categoryHandler)
+        private readonly ClaimsPrincipal _user;
+        public CategoriesController(ICategoryHandler categoryHandler,
+                                    ClaimsPrincipal user)
         {
             _categoryHandler = categoryHandler;
+            _user = user;
         }
 
         [HttpGet]
@@ -21,7 +27,7 @@ namespace ControleFinanceiro.API.Controllers
         {
             var category = new GetAllCategoryCommand
             {
-                UserId = "string",
+                UserId = _user.Identity?.Name ?? string.Empty,
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
@@ -39,7 +45,7 @@ namespace ControleFinanceiro.API.Controllers
             var command = new GetCategoryByIdCommand
             {
                 Id = id,
-                UserId = "string"
+                UserId = _user.Identity?.Name ?? string.Empty,
             };
             var result = await _categoryHandler.GetByIdAsync(command);
             if (!result.IsSuccess) return Results.BadRequest(result);
@@ -50,7 +56,7 @@ namespace ControleFinanceiro.API.Controllers
         [HttpPost]
         public async Task<IResult> CreateCategory(CreateCategoryCommand command)
         {
-            command.UserId = "string";
+            command.UserId = _user.Identity?.Name ?? string.Empty;
 
             var result = await _categoryHandler.CreateAsync(command);
 
@@ -63,7 +69,7 @@ namespace ControleFinanceiro.API.Controllers
         public async Task<IResult> UpdateCategory(UpdateCategoryCommand command, long id)
         {
             command.Id = id;
-            command.UserId = "string";
+            command.UserId = _user.Identity?.Name ?? string.Empty;
 
             var result = await _categoryHandler.UpdateAsync(command);
             if (!result.IsSuccess) return Results.BadRequest(result);
@@ -77,7 +83,7 @@ namespace ControleFinanceiro.API.Controllers
             var command = new DeleteCategoryCommand
             {
                 Id = id,
-                UserId = "string"
+                UserId = _user.Identity?.Name ?? string.Empty
             };
 
             var result = await _categoryHandler.DeleteAsync(command);

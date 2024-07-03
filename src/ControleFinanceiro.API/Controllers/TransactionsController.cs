@@ -2,24 +2,30 @@
 using ControleFinanceiro.Core.Commands.Categories;
 using ControleFinanceiro.Core.Commands.Transactions;
 using ControleFinanceiro.Core.Handlers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ControleFinanceiro.API.Controllers
 {
     [Route("api/transactions")]
+    [Authorize]
     public class TransactionsController : MainController
     {
         private readonly ITransactionHandler _transactionHandler;
+        private readonly ClaimsPrincipal _user;
 
-        public TransactionsController(ITransactionHandler transactionHandler)
+        public TransactionsController(ITransactionHandler transactionHandler,
+                                      ClaimsPrincipal user)
         {
             _transactionHandler = transactionHandler;
+            _user = user;
         }
 
         [HttpPost]
         public async Task<IResult> CreateTransaction(CreateTransactionCommand command)
         {
-            command.UserId = "string";
+            command.UserId = _user.Identity?.Name ?? string.Empty;
 
             var result = await _transactionHandler.CreateAsync(command);
 
@@ -32,7 +38,7 @@ namespace ControleFinanceiro.API.Controllers
         public async Task<IResult> UpdateTransaction(UpdateTransactionCommand command, long id)
         {
             command.Id = id;
-            command.UserId = "string";
+            command.UserId = _user.Identity?.Name ?? string.Empty;
 
             var result = await _transactionHandler.UpdateAsync(command);
             if (!result.IsSuccess) return Results.BadRequest(result);
@@ -46,7 +52,7 @@ namespace ControleFinanceiro.API.Controllers
             var command = new DeleteTransactionCommand
             {
                 Id = id,
-                UserId = "string"
+                UserId = _user.Identity?.Name ?? string.Empty
             };
 
             var result = await _transactionHandler.DeleteAsync(command);
@@ -61,7 +67,7 @@ namespace ControleFinanceiro.API.Controllers
             var command = new GetTransactionByIdCommand
             {
                 Id = id,
-                UserId = "string"
+                UserId = _user.Identity?.Name ?? string.Empty
             };
             var result = await _transactionHandler.GetByIdAsync(command);
             if (!result.IsSuccess) return Results.BadRequest(result);
@@ -74,7 +80,7 @@ namespace ControleFinanceiro.API.Controllers
         {
             var category = new GetTransactionByPeriodCommand
             {
-                UserId = "string",
+                UserId = _user.Identity?.Name ?? string.Empty,
                 PageNumber = pageNumber,
                 PageSize = pageSize,
                 StartDate = startDate,
