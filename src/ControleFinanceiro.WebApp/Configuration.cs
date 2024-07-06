@@ -4,6 +4,9 @@ namespace ControleFinanceiro.WebApp
 {
     public static class Configuration
     {
+        public const string HTTP_CLIENT_NAME = "ControleFinanceiro";
+        public static string BackendUrl { get; set; } = "https://localhost:44303";
+
         public static MudTheme theme = new()
         {
             Typography = new Typography
@@ -22,7 +25,7 @@ namespace ControleFinanceiro.WebApp
             },
             PaletteLight = new PaletteLight
             {
-                Primary = "#ffffff",
+                Primary = "#040943",
                 Secondary = Colors.LightBlue.Darken3,
                 Background = Colors.Gray.Lighten4,
                 AppbarBackground = "#ffffff",

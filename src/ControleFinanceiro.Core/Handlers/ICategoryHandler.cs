@@ -1,6 +1,6 @@
 ﻿using ControleFinanceiro.Core.Commands;
 using ControleFinanceiro.Core.Commands.Categories;
-using ControleFinanceiro.Core.Entities;
+using ControleFinanceiro.Core.Models;
 using ControleFinanceiro.Core.Responses;
 using ControleFinanceiro.Core.Services;
 using System;

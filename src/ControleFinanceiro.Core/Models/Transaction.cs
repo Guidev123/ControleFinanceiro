@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControleFinanceiro.Core.Entities
+namespace ControleFinanceiro.Core.Models
 {
     public class Transaction
     {

@@ -1,5 +1,5 @@
 ﻿using ControleFinanceiro.Core.Commands.Categories;
-using ControleFinanceiro.Core.Entities;
+using ControleFinanceiro.Core.Models;
 using ControleFinanceiro.Core.Handlers;
 using ControleFinanceiro.Core.Responses;
 using Microsoft.AspNetCore.Authorization;

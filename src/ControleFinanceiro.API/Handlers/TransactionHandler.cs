@@ -1,6 +1,6 @@
 ﻿using Azure.Core;
 using ControleFinanceiro.Core.Commands.Transactions;
-using ControleFinanceiro.Core.Entities;
+using ControleFinanceiro.Core.Models;
 using ControleFinanceiro.Core.Extensions;
 using ControleFinanceiro.Core.Handlers;
 using ControleFinanceiro.Core.Responses;

@@ -1,4 +1,5 @@
-﻿using ControleFinanceiro.Data.Models;
+﻿using ControleFinanceiro.Core.Models.Account;
+using ControleFinanceiro.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 
@@ -31,11 +32,11 @@ namespace ControleFinanceiro.API.Configuration
             {
                 endpoints.MapGroup("api/identity")
                     .WithTags("Identity")
-                    .MapIdentityApi<User>();
+                    .MapIdentityApi<Data.Models.User>();
 
                 endpoints.MapGroup("api/identity")
                     .WithTags("Identity")
-                    .MapPost("/logout", async (SignInManager<User> signInManager) =>
+                    .MapPost("/logout", async (SignInManager<Data.Models.User> signInManager) =>
                     {
                         await signInManager.SignOutAsync();
                     });
@@ -48,13 +49,13 @@ namespace ControleFinanceiro.API.Configuration
 
                         var identity = (ClaimsIdentity)user.Identity;
 
-                        var roles = identity.FindAll(identity.RoleClaimType).Select(c => new
+                        var roles = identity.FindAll(identity.RoleClaimType).Select(c => new RoleClaim
                         {
-                            c.Issuer,
-                            c.OriginalIssuer,
-                            c.Type,
-                            c.Value,
-                            c.ValueType
+                            Issuer = c.Issuer,
+                            OriginalIssuer = c.OriginalIssuer,
+                            Type = c.Type,
+                            Value = c.Value,
+                            ValueType =  c.ValueType
                         });
 
                         return TypedResults.Json(roles);

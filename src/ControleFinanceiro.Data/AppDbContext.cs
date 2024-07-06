@@ -1,4 +1,4 @@
-﻿using ControleFinanceiro.Core.Entities;
+﻿using ControleFinanceiro.Core.Models;
 using ControleFinanceiro.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;

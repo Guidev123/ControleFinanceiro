@@ -15,9 +15,9 @@
                 <MudTextField T="string" Class="pb-8 pt-8" Label="Senha" InputType="InputType.Password" Required="true" RequiredError="Informe a senha" Validation="@(new EmailAddressAttribute{ErrorMessage = "Senha inválida"})" />
             </MudForm>
             <div class="d-flex mt-8">
-                <MudButton Variant="Variant.Filled" Color="Color.Primary">Entrar</MudButton>
+                <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Sharp.AccountBox" Color="Color.Primary">Entrar</MudButton>
                 <MudSpacer />
-                <MudButton Href="/registrar" Variant="Variant.Filled" Color="Color.Primary">Registrar</MudButton>
+                <MudButton Href="/registrar" Variant="Variant.Filled" EndIcon="@Icons.Material.Sharp.AccessibilityNew" Color="Color.Primary">Criar nova conta</MudButton>
             </div>
         </MudPaper>
     </MudItem>

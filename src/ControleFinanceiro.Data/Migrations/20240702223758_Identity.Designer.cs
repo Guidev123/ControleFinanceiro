@@ -25,7 +25,7 @@ namespace ControleFinanceiro.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ControleFinanceiro.Core.Entities.Category", b =>
+            modelBuilder.Entity("ControleFinanceiro.Core.Models.Category", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,7 +52,7 @@ namespace ControleFinanceiro.Data.Migrations
                     b.ToTable("Categories", (string)null);
                 });
 
-            modelBuilder.Entity("ControleFinanceiro.Core.Entities.Transaction", b =>
+            modelBuilder.Entity("ControleFinanceiro.Core.Models.Transaction", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -303,9 +303,9 @@ namespace ControleFinanceiro.Data.Migrations
                     b.ToTable("IdentityUserToken", (string)null);
                 });
 
-            modelBuilder.Entity("ControleFinanceiro.Core.Entities.Transaction", b =>
+            modelBuilder.Entity("ControleFinanceiro.Core.Models.Transaction", b =>
                 {
-                    b.HasOne("ControleFinanceiro.Core.Entities.Category", "Category")
+                    b.HasOne("ControleFinanceiro.Core.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)

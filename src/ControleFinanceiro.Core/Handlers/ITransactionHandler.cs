@@ -1,5 +1,5 @@
 ﻿using ControleFinanceiro.Core.Commands.Transactions;
-using ControleFinanceiro.Core.Entities;
+using ControleFinanceiro.Core.Models;
 using ControleFinanceiro.Core.Responses;
 using ControleFinanceiro.Core.Services;
 using System;

@@ -1,4 +1,4 @@
-﻿using ControleFinanceiro.Core.Entities;
+﻿using ControleFinanceiro.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
