@@ -2,6 +2,7 @@
 using ControleFinanceiro.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using User = ControleFinanceiro.Data.Models.User;
 
 namespace ControleFinanceiro.API.Configuration
 {
@@ -32,11 +33,11 @@ namespace ControleFinanceiro.API.Configuration
             {
                 endpoints.MapGroup("api/identity")
                     .WithTags("Identity")
-                    .MapIdentityApi<Data.Models.User>();
+                    .MapIdentityApi<User>();
 
                 endpoints.MapGroup("api/identity")
                     .WithTags("Identity")
-                    .MapPost("/logout", async (SignInManager<Data.Models.User> signInManager) =>
+                    .MapPost("/logout", async (SignInManager<User> signInManager) =>
                     {
                         await signInManager.SignOutAsync();
                     });
