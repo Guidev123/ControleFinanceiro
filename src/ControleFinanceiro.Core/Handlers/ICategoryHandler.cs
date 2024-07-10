@@ -1,13 +1,9 @@
-﻿using ControleFinanceiro.Core.Commands;
+﻿
+
 using ControleFinanceiro.Core.Commands.Categories;
 using ControleFinanceiro.Core.Models;
 using ControleFinanceiro.Core.Responses;
 using ControleFinanceiro.Core.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleFinanceiro.Core.Handlers
 {

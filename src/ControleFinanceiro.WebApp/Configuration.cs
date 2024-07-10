@@ -5,7 +5,7 @@ namespace ControleFinanceiro.WebApp
     public static class Configuration
     {
         public const string HTTP_CLIENT_NAME = "ControleFinanceiro";
-        public static string BackendUrl { get; set; } = "https://localhost:44303";
+        public static string BackendUrl { get; set; } = string.Empty;
 
         public static MudTheme theme = new()
         {
