@@ -1,5 +1,4 @@
 using ControleFinanceiro.API.Configuration;
-using ControleFinanceiro.API.Extensions;
 
 //========================================== Environment Configure ===============================================/
 var builder = WebApplication.CreateBuilder(args);
@@ -18,13 +17,10 @@ builder.Services.AddDocumentationConfig(builder.Configuration);
 builder.Services.ResolveDependencies(builder.Configuration);
 
 
-
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseConfigureDevEnvironmentConfig();
 }
-app.UseCors(CorsPolicy.CorsPolicyName);
-app.UseSecurityConfig();
-app.UseIdentityEndPointsConfig();
+app.UseApiConfig(app.Environment);
 app.Run();

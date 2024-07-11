@@ -2,7 +2,7 @@
 @layout HeadlessLayout
 @inherits RegisterPage
 
-<PageTitle>Controle Financeiro - Entrar</PageTitle>
+<PageTitle>Controle Financeiro - Registrar</PageTitle>
 
 <MudGrid Justify="Justify.Center">
     <MudItem xs="12" sm="12" md="8" lg="6" xl="6" xxl="6">
@@ -11,22 +11,37 @@
                 <a href="/"><img src="images/logo (1).png" alt="Logo" width="250" /></a>
             </div>
             <h1 class="d-flex justify-center">Controle Financeiro</h1>
-            <EditForm Model="@InputModel" OnInvalidSubmit="ValidSubmitAsync">
-                <DataAnnotationsValidator/>
-                <MudTextField T="string" Class="pb-4 pt-4" Label="Email" HelperText="Campo obrigatorio" InputType="InputType.Email" @bind-Value="InputModel.Email" For="@(()=> InputModel.Email)"/>
-                <MudTextField T="string" Class="pb-4 pt-4" Label="Senha" HelperText="Campo obrigatorio" InputType="InputType.Password" @bind-Value="InputModel.Password" For="@(()=> InputModel.Password)" />
+
+            <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+                <DataAnnotationsValidator />
+
+                <MudTextField T="string"
+                              Label="E-mail"
+                              HelperText="Campo obrigatório"
+                              InputType="InputType.Email"
+                              For="@(() => InputModel.Email)"
+                              @bind-Value="InputModel.Email" />
+
+                <MudTextField T="string"
+                              Label="Senha"
+                              HelperText="Campo obrigatório"
+                              InputType="InputType.Password"
+                              For="@(() => InputModel.Password)"
+                              @bind-Value="InputModel.Password" />
+
                 <div class="d-flex mt-8">
-                    @if(IsBusy)
+                    @if (IsBusy)
                     {
-                        <MudProgressCircular Color="Color.Info" Indeterminate="true"/>
+                        <MudProgressCircular Color="Color.Info" Indeterminate="true" />
                     }
                     else
                     {
-                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" EndIcon="@Icons.Material.Sharp.AccountBox" Color="Color.Primary">Registrar</MudButton>
+                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">REGISTRAR</MudButton>
                         <MudSpacer />
                         <MudButton Href="/entrar" Variant="Variant.Filled" EndIcon="@Icons.Material.Sharp.AccessibilityNew" Color="Color.Primary">Já possui uma conta?</MudButton>
                     }
                 </div>
+
             </EditForm>
         </MudPaper>
     </MudItem>

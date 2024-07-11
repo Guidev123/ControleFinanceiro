@@ -1,5 +1,4 @@
-﻿using ControleFinanceiro.API.Extensions;
-using ControleFinanceiro.Data;
+﻿using ControleFinanceiro.Data;
 using ControleFinanceiro.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,9 +17,6 @@ namespace ControleFinanceiro.API.Configuration
                 .AddRoles<IdentityRole<long>>()
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddApiEndpoints();
-
-            AppSettings.BackendUrl = configuration.GetValue<string>("BackendUrl") ?? string.Empty;
-            AppSettings.FrontendUrl = configuration.GetValue<string>("FrontendUrl") ?? string.Empty;
         }
 
         public static void AddDocumentationConfig(this IServiceCollection services, IConfiguration configuration)
@@ -43,18 +39,39 @@ namespace ControleFinanceiro.API.Configuration
 
         public static void AddCorsConfig(this WebApplicationBuilder builder)
         {
-            builder.Services.AddCors(
-            options => options.AddPolicy(
-                CorsPolicy.CorsPolicyName,
-                policy => policy
-                    .WithOrigins([
-                        AppSettings.BackendUrl,
-                        AppSettings.FrontendUrl
-                    ])
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials()
-            ));
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("Total", policy =>
+                {
+                    policy.WithOrigins("https://localhost:44303")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .AllowCredentials();
+                });
+            });
+        }
+        public static void UseApiConfig(this IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseCors("Total");
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseIdentityEndPointsConfig();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

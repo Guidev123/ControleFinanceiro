@@ -40,7 +40,7 @@ namespace ControleFinanceiro.WebApp.Pages.Identity
         }
 
         // METHODS
-        public async Task ValidSubmitAsync()
+        public async Task OnValidSubmitAsync()
         {
             IsBusy = true;
 

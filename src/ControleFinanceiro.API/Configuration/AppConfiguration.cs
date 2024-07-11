@@ -15,18 +15,6 @@ namespace ControleFinanceiro.API.Configuration
             app.MapSwagger().RequireAuthorization();
         }
 
-        public static void UseSecurityConfig(this WebApplication app)
-        {
-            app.UseHttpsRedirection();
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-
-            app.MapControllers();
-        }
-
         public static void UseIdentityEndPointsConfig(this IApplicationBuilder app)
         {
             app.UseEndpoints(endpoints =>
