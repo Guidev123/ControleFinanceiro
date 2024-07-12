@@ -1,8 +1,7 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider Theme="Configuration.theme" />
+<MudThemeProvider @ref="_mudThemeProvider" @bind-IsDarkMode="_isDarkMode" Theme="Configuration.theme" />
 <MudSnackbarProvider />
-
 
 <MudLayout>
     <MudMainContent>
@@ -11,3 +10,10 @@
         </MudContainer>
     </MudMainContent>
 </MudLayout>
+
+@code
+{
+    private MudThemeProvider _mudThemeProvider = null!;
+    private bool _isDarkMode = true;
+
+}

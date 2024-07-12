@@ -4,11 +4,10 @@ using ControleFinanceiro.WebApp.Security;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
-using MudBlazor.Extensions;
 
 namespace ControleFinanceiro.WebApp.Pages.Identity
 {
-    public partial class RegisterPage : ComponentBase
+    public partial class LoginPage : ComponentBase
     {
         // DEPENDENCIES
         [Inject]
@@ -23,11 +22,9 @@ namespace ControleFinanceiro.WebApp.Pages.Identity
         [Inject]
         public ICookieAuthenticationStateProvider AuthenticationStateProvider { get; set; } = null!;
 
-
         // PROPRIEDADES
         public bool IsBusy { get; set; } = false;
-        public RegisterCommand InputModel { get; set; } = new();
-
+        public LoginCommand InputModel { get; set; } = new();
 
 
         // OVERRIDE
@@ -37,6 +34,7 @@ namespace ControleFinanceiro.WebApp.Pages.Identity
             var user = authState.User;
 
             if (user.Identity is not null && user.Identity.IsAuthenticated) NavigationManager.NavigateTo("/");
+
         }
 
         // METHODS
@@ -46,12 +44,15 @@ namespace ControleFinanceiro.WebApp.Pages.Identity
 
             try
             {
-                var result = await Handler.RegisterAsync(InputModel);
+                var result = await Handler.LoginAsync(InputModel);
 
                 if (result.IsSuccess)
                 {
+                    await AuthenticationStateProvider.GetAuthenticationStateAsync();
+                    AuthenticationStateProvider.NotifyAuthenticationStateChanged();
+
                     Snackbar.Add(result.Message, Severity.Success);
-                    NavigationManager.NavigateTo("/entrar");
+                    NavigationManager.NavigateTo("/");
                 }
                 else
                 {

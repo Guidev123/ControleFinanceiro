@@ -15,19 +15,9 @@
             <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
                 <DataAnnotationsValidator />
 
-                <MudTextField T="string"
-                              Label="E-mail"
-                              HelperText="Campo obrigatório"
-                              InputType="InputType.Email"
-                              For="@(() => InputModel.Email)"
-                              @bind-Value="InputModel.Email" />
+                <MudTextField T="string" Label="E-mail" HelperText="Campo obrigatório" InputType="InputType.Email" For="@(() => InputModel.Email)" @bind-Value="InputModel.Email" />
 
-                <MudTextField T="string"
-                              Label="Senha"
-                              HelperText="Campo obrigatório"
-                              InputType="InputType.Password"
-                              For="@(() => InputModel.Password)"
-                              @bind-Value="InputModel.Password" />
+                <MudTextField T="string" Label="Senha" HelperText="Campo obrigatório" InputType="InputType.Password" For="@(() => InputModel.Password)" @bind-Value="InputModel.Password" />
 
                 <div class="d-flex mt-8">
                     @if (IsBusy)
@@ -36,7 +26,7 @@
                     }
                     else
                     {
-                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">REGISTRAR</MudButton>
+                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">Registrar</MudButton>
                         <MudSpacer />
                         <MudButton Href="/entrar" Variant="Variant.Filled" EndIcon="@Icons.Material.Sharp.AccessibilityNew" Color="Color.Primary">Já possui uma conta?</MudButton>
                     }

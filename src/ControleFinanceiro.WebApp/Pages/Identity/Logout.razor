@@ -1,0 +1,19 @@
+﻿@page "/sair"
+@inherits LogoutPage
+@layout HeadlessLayout
+
+<PageTitle>Controle Financeiro - Sair</PageTitle>
+
+<MudText Typo="Typo.h3">Saindo da conta...</MudText>
+<MudPaper Class="pa-8 mt-4">
+    <div class="d-flex justify-center pb-8 pt-8">
+        <a href="/"><img src="images/logo (1).png" alt="Logo" width="250" /></a>
+    </div>
+    <h1 class="d-flex justify-center">Controle Financeiro</h1>
+    <MudAlert Severity="Severity.Info">
+        Saindo da conta...
+        <MudButton Variant="Variant.Text" Href="/">
+            Voltar para o inicio
+        </MudButton>
+    </MudAlert>
+</MudPaper>
