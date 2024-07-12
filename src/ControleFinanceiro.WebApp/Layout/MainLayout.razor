@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@using ControleFinanceiro.WebApp.Components
 
 <MudThemeProvider @ref="_mudThemeProvider" @bind-IsDarkMode="_isDarkMode" Theme="Configuration.theme" />
 <MudSnackbarProvider />
@@ -16,6 +17,7 @@
                 </MudText>
             </MudAppBar>
             <MudDrawer @bind-Open="@_isDrawerOpened">
+                <NavMenu/>
             </MudDrawer>
             <MudMainContent>
                 <MudContainer Class="mt-4">
@@ -40,5 +42,7 @@
     private bool _isDarkMode = true;
 
     private void ToggleDrawer()
-        => _isDrawerOpened = !_isDrawerOpened;
+    {
+        _isDrawerOpened = !_isDrawerOpened;
+    }
 }

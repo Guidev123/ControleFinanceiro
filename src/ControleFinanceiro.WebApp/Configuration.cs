@@ -18,10 +18,10 @@ namespace ControleFinanceiro.WebApp
             },
             PaletteDark = new PaletteDark
             {
-                Primary = "#040943",
+                Primary = Colors.Blue.Darken3,
                 Secondary = Colors.LightBlue.Darken3,
-                AppbarBackground = "#040943",
-                AppbarText = "#d5d7d9"
+                AppbarBackground = Colors.LightBlue.Darken3,
+                AppbarText = Colors.Shades.White
             }
         };
     }
