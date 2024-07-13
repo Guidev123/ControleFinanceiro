@@ -2,7 +2,7 @@
 
 namespace ControleFinanceiro.WebApp
 {
-    public static class Configuration
+    public static class WebConfiguration
     {
         public const string HTTP_CLIENT_NAME = "ControleFinanceiro";
         public static string BackendUrl { get; set; } = string.Empty;

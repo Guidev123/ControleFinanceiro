@@ -9,7 +9,7 @@ namespace ControleFinanceiro.WebApp.Handlers
 {
     public class AccountHandler(IHttpClientFactory _httpClientFactory) : IAccountHandler
     {
-        private readonly HttpClient _client = _httpClientFactory.CreateClient(Configuration.HTTP_CLIENT_NAME);
+        private readonly HttpClient _client = _httpClientFactory.CreateClient(WebConfiguration.HTTP_CLIENT_NAME);
 
         public async Task<Response<string>> LoginAsync(LoginCommand command)
         {

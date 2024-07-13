@@ -8,7 +8,7 @@ namespace ControleFinanceiro.WebApp.Security
     public class CookieAuthenticationStateProvider(IHttpClientFactory _client) : AuthenticationStateProvider, ICookieAuthenticationStateProvider
     {
         private bool _isAuthenticated = false;
-        private readonly HttpClient _client = _client.CreateClient(Configuration.HTTP_CLIENT_NAME);
+        private readonly HttpClient _client = _client.CreateClient(WebConfiguration.HTTP_CLIENT_NAME);
 
         public async Task<bool> CheckAuthenticatedAsync()
         {
