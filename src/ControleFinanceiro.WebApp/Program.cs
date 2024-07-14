@@ -16,8 +16,6 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddAuthorizationCore();
 builder.Services.ResolveDependencies();
 
-builder.Services.AddMudServices();
-
 
 builder.Services.AddHttpClient(WebConfiguration.HTTP_CLIENT_NAME, opt =>
 {

@@ -15,6 +15,7 @@ namespace ControleFinanceiro.WebApp.Configurations
             services.AddTransient<ICategoryHandler, CategoryHandler>();
             services.AddTransient<ITransactionHandler, TransactionHandler>();
             services.AddTransient<IAccountHandler, AccountHandler>();
+            services.AddTransient<IChartHandler, ChartHandler>();
 
 
             // AUTH
@@ -23,7 +24,7 @@ namespace ControleFinanceiro.WebApp.Configurations
             services.AddScoped(x => (ICookieAuthenticationStateProvider)x.GetRequiredService<AuthenticationStateProvider>());
 
             // THEME
-            //services.AddMudServices();
+            services.AddMudServices();
         }
     }
 }

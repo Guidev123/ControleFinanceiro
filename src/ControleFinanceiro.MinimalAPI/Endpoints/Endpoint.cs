@@ -1,6 +1,7 @@
 ﻿using ControleFinanceiro.Data.Models;
 using ControleFinanceiro.MinimalAPI.Application;
 using ControleFinanceiro.MinimalAPI.Endpoints.Categories;
+using ControleFinanceiro.MinimalAPI.Endpoints.Charts;
 using ControleFinanceiro.MinimalAPI.Endpoints.Identity;
 using ControleFinanceiro.MinimalAPI.Endpoints.Transactions;
 
@@ -43,6 +44,14 @@ namespace ControleFinanceiro.MinimalAPI.Endpoints
                 .WithTags("Identity")
                 .MapEndpoint<LogoutEndpoint>()
                 .MapEndpoint<GetRolesEndpoint>();
+
+            endpoints.MapGroup("api/charts")
+                .WithTags("Charts")
+                .RequireAuthorization()
+                .MapEndpoint<GetIncomesAndExpensesEndpoint>()
+                .MapEndpoint<GetExpensesByCategoryEndpoint>()
+                .MapEndpoint<GetFinancialSummaryEndpoint>()
+                .MapEndpoint<GetIncomesByCategoryEndpoint>();
 
         }
 

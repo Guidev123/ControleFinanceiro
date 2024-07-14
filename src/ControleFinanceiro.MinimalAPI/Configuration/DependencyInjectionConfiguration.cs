@@ -18,6 +18,7 @@ namespace ControleFinanceiro.MinimalAPI.Configuration
             // HANDLER
             services.AddTransient<ICategoryHandler, CategoryHandler>();
             services.AddTransient<ITransactionHandler, TransactionHandler>();
+            services.AddTransient<IChartHandler, ChartHandler>();
 
         }
     }

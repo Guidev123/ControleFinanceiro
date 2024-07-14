@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ControleFinanceiro.Core.Models.Charts
 {
-    public record ExpensesByCategory(string UserId, string Category, int year, decimal Expenses)
+    public record ExpensesByCategory(string UserId, string Category, int Year, decimal Expenses)
     {
     }
 }

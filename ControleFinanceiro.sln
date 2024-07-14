@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleFinanceiro.Data", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleFinanceiro.WebApp", "src\ControleFinanceiro.WebApp\ControleFinanceiro.WebApp.csproj", "{09C838ED-26C8-4975-9F06-DF1695C7C26C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleFinanceiro.MinimalAPI", "src\ControleFinanceiro.MinimalAPI\ControleFinanceiro.MinimalAPI.csproj", "{34755EA5-AFB4-4367-AF02-C68148857CD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleFinanceiro.MinimalAPI", "src\ControleFinanceiro.MinimalAPI\ControleFinanceiro.MinimalAPI.csproj", "{34755EA5-AFB4-4367-AF02-C68148857CD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
