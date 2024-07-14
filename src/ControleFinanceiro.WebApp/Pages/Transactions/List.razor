@@ -68,7 +68,7 @@
         <TemplateColumn CellClass="d-flex justify-end">
             <CellTemplate>
                 <MudStack Row>
-                    <MudIconButton Icon="@Icons.Material.Outlined.Edit" Color="Color.Primary" Href="@($"/transacoes/editar{context.Item.Id}")"></MudIconButton>
+                    <MudIconButton Icon="@Icons.Material.Outlined.Edit" Color="Color.Primary" Href="@($"/transacoes/editar/{context.Item.Id}")"></MudIconButton>
                     <MudIconButton Icon="@Icons.Material.Outlined.Delete" Color="Color.Error" OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.Title)"></MudIconButton>
                 </MudStack>
             </CellTemplate>

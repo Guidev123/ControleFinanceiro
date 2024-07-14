@@ -18,6 +18,7 @@ namespace ControleFinanceiro.WebApp.Pages.Transactions
         public int CurrentMonth { get; set; } = DateTime.Now.Month;
         public int[] Years { get; set; } =
         {
+            DateTime.Now.Year,
             DateTime.Now.AddYears(-1).Year,
             DateTime.Now.AddYears(-2).Year,
             DateTime.Now.AddYears(-3).Year

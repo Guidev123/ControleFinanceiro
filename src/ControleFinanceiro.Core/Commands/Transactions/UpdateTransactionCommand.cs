@@ -32,6 +32,6 @@ namespace ControleFinanceiro.Core.Commands.Transactions
 
 
         [Required(ErrorMessage = "O campo {0} esta invalido")]
-        public DateTime PaidOrReceivedAt { get; set; }
+        public DateTime? PaidOrReceivedAt { get; set; }
     }
 }
