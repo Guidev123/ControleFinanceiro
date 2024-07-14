@@ -13,7 +13,7 @@
     <p>O projeto segue alguns princípios de CQRS, DDD e SOLID para garantir uma arquitetura robusta e escalável.</p>
 
   <h2>Video Demo</h2>
-https://www.youtube.com/watch?v=1aZSd5DyQWY](https://www.youtube.com/watch?v=mo0og7f-mUk
+https://www.youtube.com/watch?v=mo0og7f-mUk
 
    <h2>Endpoints</h2>
     <h3>Categories</h3>
