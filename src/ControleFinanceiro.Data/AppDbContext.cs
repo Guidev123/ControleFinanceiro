@@ -1,9 +1,9 @@
 ﻿using ControleFinanceiro.Core.Models;
-using ControleFinanceiro.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using ControleFinanceiro.Data.Models;
 
 namespace ControleFinanceiro.Data
 {

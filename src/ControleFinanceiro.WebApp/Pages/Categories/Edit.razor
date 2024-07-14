@@ -1,0 +1,41 @@
+﻿@page "/categorias/editar/{id}"
+@inherits EditCategoryPage
+
+<PageTitle>Controle Financeiro - Editar Categoria</PageTitle>
+
+<MudText Typo="Typo.h3">Editar Categoria</MudText>
+@if(IsBusy)
+{
+    <MudPaper Class="pa-8 mt-4">
+        <MudSkeleton Height="55px"/>
+        <MudSkeleton Height="210px"/>
+        <MudSkeleton Height="155px"/>
+        <MudSkeleton Height="210px"/>
+        <MudSkeleton Height="50px"/>
+    </MudPaper>
+}
+else
+{
+    <MudPaper Class="pa-8 mt-4">
+        <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+            <DataAnnotationsValidator />
+
+            <MudTextField Label="Título" HelperText="Campo obrigatório" @bind-Value="InputModel.Title" For="@(() => InputModel.Title)" Variant="Variant.Outlined" />
+
+            <MudTextField Label="Descição" HelperText="Campo obrigatório" @bind-Value="InputModel.Description" For="@(() => InputModel.Description)" Variant="Variant.Outlined" Lines="3" />
+
+            <div class="d-flex mt-8">
+                @if (IsBusy)
+                {
+                    <MudProgressCircular Color="Color.Info" Indeterminate="true" />
+                }
+                else
+                {
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" EndIcon="@Icons.Material.Sharp.Save">Salvar</MudButton>
+                    <MudSpacer />
+                    <MudButton Href="/categorias" Variant="Variant.Filled" EndIcon="@Icons.Material.Sharp.ArrowBack" Color="Color.Primary">Voltar</MudButton>
+                }
+            </div>
+        </EditForm>
+    </MudPaper>
+}

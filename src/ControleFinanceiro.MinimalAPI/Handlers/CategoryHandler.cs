@@ -6,7 +6,7 @@ using ControleFinanceiro.Core.Services;
 using ControleFinanceiro.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace ControleFinanceiro.API.Handlers
+namespace ControleFinanceiro.MinimalAPI.Handlers
 {
     public class CategoryHandler(AppDbContext _context) : ICategoryHandler
     {

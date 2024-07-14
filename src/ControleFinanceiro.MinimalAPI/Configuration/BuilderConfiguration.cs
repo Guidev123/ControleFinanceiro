@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace ControleFinanceiro.API.Configuration
+namespace ControleFinanceiro.MinimalAPI.Configuration
 {
     public static class BuilderConfiguration
     {
@@ -18,10 +18,16 @@ namespace ControleFinanceiro.API.Configuration
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddApiEndpoints();
         }
-
+        public static void AddEnvConfig(this WebApplicationBuilder builder)
+        {
+            builder.Configuration
+                .SetBasePath(builder.Environment.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
+        }
         public static void AddDocumentationConfig(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(x =>
             {
@@ -48,29 +54,6 @@ namespace ControleFinanceiro.API.Configuration
                           .AllowAnyMethod()
                           .AllowCredentials();
                 });
-            });
-        }
-        public static void UseApiConfig(this IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseCors("Total");
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.UseIdentityEndPointsConfig();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
             });
         }
     }

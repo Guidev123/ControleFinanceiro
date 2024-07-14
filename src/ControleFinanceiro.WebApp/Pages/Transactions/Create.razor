@@ -1,5 +1,55 @@
-﻿<h3>Create</h3>
+﻿@page "/transacoes/adicionar"
+@inherits CreateTransactionPage
 
-@code {
+<PageTitle>Controle Financeiro - Criar Transacao</PageTitle>
 
+<MudText Typo="Typo.h3">Adicionar Transação</MudText>
+
+@if(IsBusy)
+{
+    <MudPaper Class="pa-8 mt-4">
+        <MudSkeleton Height="55px" />
+        <MudSkeleton Height="210px" />
+        <MudSkeleton Height="155px" />
+        <MudSkeleton Height="210px" />
+        <MudSkeleton Height="50px" />
+    </MudPaper>
+}
+else
+{
+    <MudPaper Class="pa-8 mt-4">
+        <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+            <DataAnnotationsValidator/>
+            
+            <MudTextField Label="Título" Variant="Variant.Outlined" HelperText="Campo Obrigatório" @bind-Value="InputModel.Title" For="@(() => InputModel.Title)"/>
+            
+            <MudTextField Immediate="false" Label="Valor" ErrorText="Digite um Valor Numérico" Format="C" Variant="Variant.Outlined" T="decimal" HelperText="Qual o Valor a Ser Pago ou Recebido?" @bind-Value="InputModel.Amount" For="@(() => InputModel.Amount)" />
+            
+            <MudDatePicker Variant="Variant.Outlined" Label="Data da transação" @bind-Date="@InputModel.PaidOrReceivedAt" HelperText="Qual a data que o valor será pago ou recebido?"/>
+
+            <MudSelect Variant="Variant.Outlined" T="@ETransactionType" Label="Tipo da operação" HelperText="Qual o tipo da operação?" AnchorOrigin="Origin.BottomCenter" @bind-Value="InputModel.TransactionType">
+                <MudSelectItem T="@ETransactionType" Value="@ETransactionType.Deposit">Recebimento</MudSelectItem>
+                <MudSelectItem T="@ETransactionType" Value="@ETransactionType.Withdraw">Pagamento</MudSelectItem>
+            </MudSelect>
+
+            <MudSelect Variant="Variant.Outlined" T="long" HelperText="Escolha uma categoria" Label="Categoria" @bind-Value="InputModel.CategoryId" AnchorOrigin="Origin.BottomCenter">
+                @foreach(var category in Categories)
+                {
+                    <MudSelectItem T="long" Value="category.Id">@category.Title</MudSelectItem>
+                }
+            </MudSelect>
+            <div class="d-flex mt-8">
+                @if (IsBusy)
+                {
+                    <MudProgressCircular Color="Color.Info" Indeterminate="true" />
+                }
+                else
+                {
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" EndIcon="@Icons.Material.Sharp.Save">Criar</MudButton>
+                    <MudSpacer />
+                    <MudButton Href="/transacoes/historico" Variant="Variant.Filled" EndIcon="@Icons.Material.Sharp.ArrowBack" Color="Color.Primary">Voltar</MudButton>
+                }
+            </div>
+        </EditForm>
+    </MudPaper>
 }

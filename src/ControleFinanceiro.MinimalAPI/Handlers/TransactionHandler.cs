@@ -7,6 +7,7 @@ using ControleFinanceiro.Core.Responses;
 using ControleFinanceiro.Core.Services;
 using ControleFinanceiro.Data;
 using Microsoft.EntityFrameworkCore;
+using ControleFinanceiro.Core.Enums;
 
 namespace ControleFinanceiro.API.Handlers
 {
@@ -14,6 +15,8 @@ namespace ControleFinanceiro.API.Handlers
     {
         public async Task<Response<Transaction?>> CreateAsync(CreateTransactionCommand command)
         {
+            if (command.TransactionType == ETransactionType.Withdraw && command.Amount >= 0) command.Amount *= -1; // CONVERTE O VALOR PARA NEGATIVO SE FOR OPERACAO DE SAIDA
+
             try
             {
                 var transaction = new Transaction
@@ -39,6 +42,7 @@ namespace ControleFinanceiro.API.Handlers
         }
         public async Task<Response<Transaction?>> UpdateAsync(UpdateTransactionCommand command)
         {
+            if (command.TransactionType == ETransactionType.Withdraw && command.Amount >= 0) command.Amount *= -1; // CONVERTE O VALOR PARA NEGATIVO SE FOR OPERACAO DE SAIDA
 
             try
             {

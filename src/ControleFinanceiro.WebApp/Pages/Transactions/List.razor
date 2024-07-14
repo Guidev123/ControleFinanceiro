@@ -1,0 +1,89 @@
+﻿@page "/transacoes/historico"
+@inherits ListTransactionPage
+
+<PageTitle>Controle Financeiro - Transacoes</PageTitle>
+
+<MudText Typo="Typo.h3">Histórico</MudText>
+
+@if(!IsBusy)
+{
+    <div class="d-flex justify-end mt-4 mb-4">
+        <MudButton Class="mr-4" Size="Size.Small" Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Search" OnClick="OnSearchAsync">
+            Filtrar
+        </MudButton>
+        <MudSelect T="int" Label="Mês" @bind-Value="CurrentMonth" AnchorOrigin="Origin.BottomCenter" Class="mr-4">
+            @for(var month = 1; month <= 12; month++)
+            {
+                var date = new DateTime(DateTime.Now.Year, month, 1);
+                <MudSelectItem T="int" Value="@month">@(date.ToString("MMMM"))</MudSelectItem>
+            }
+        </MudSelect>
+        <MudSelect T="int" Label="Ano" @bind-Value="CurrentYear" AnchorOrigin="Origin.BottomCenter" Class="mr-4">
+            @foreach(var year in Years)
+            {
+                <MudSelectItem T="int" Value="@year">@year</MudSelectItem>
+            }
+        </MudSelect>
+        <MudSpacer/>
+        <MudSpacer/>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.AddTask" Href="/transacoes/adicionar">
+            Nova Transação
+        </MudButton>
+    </div>
+    <MudDataGrid Class="mt-4" Items="@Transactions" QuickFilter="Filter">
+    <ToolBarContent>
+        <MudSpacer></MudSpacer>
+        <MudTextField @bind-Value="SearchTerm" Placeholder="Pesquisar..." Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Search"
+                      Immediate="true" IconSize="Size.Medium" Class="mt-0">
+        </MudTextField>
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => x.Id" Title="Código da operação" />
+        <PropertyColumn Property="x => x.Title" Title="Título" />
+            <PropertyColumn Property="x => x.PaidOrReceivedAt" Format="dd/MM/yyyy" Title="Data da operação" />
+        <TemplateColumn Title="Tipo da transação">
+            <CellTemplate>
+                @if (context.Item.TransactionType == ETransactionType.Deposit)
+                {
+                    <MudChip Color="Color.Success" Size="Size.Small" Variant="Variant.Outlined">
+                        Recebido
+                    </MudChip>
+                }
+                else
+                {
+                    <MudChip Color="Color.Error" Size="Size.Small" Variant="Variant.Outlined">
+                        Pago
+                    </MudChip>
+                }
+            </CellTemplate>
+        </TemplateColumn>
+        <PropertyColumn Property="x => x.Amount" Format="C" Title="Valor" Sortable="true">
+            <FooterTemplate>
+                <MudText Typo="Typo.inherit">
+                    Saldo: @context.Items.Sum(x => x.Amount).ToString("C")
+                </MudText>
+            </FooterTemplate>
+        </PropertyColumn>
+        <TemplateColumn CellClass="d-flex justify-end">
+            <CellTemplate>
+                <MudStack Row>
+                    <MudIconButton Icon="@Icons.Material.Outlined.Edit" Color="Color.Primary" Href="@($"/transacoes/editar{context.Item.Id}")"></MudIconButton>
+                    <MudIconButton Icon="@Icons.Material.Outlined.Delete" Color="Color.Error" OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.Title)"></MudIconButton>
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+    </MudDataGrid>
+}
+else
+{
+    <MudPaper Class="pa-8 mt-4">
+        <MudSkeleton Height="55px" />
+        <MudSkeleton Height="210px" />
+        <MudSkeleton Height="155px" />
+        <MudSkeleton Height="210px" />
+        <MudSkeleton Height="50px" />
+    </MudPaper>
+}
+

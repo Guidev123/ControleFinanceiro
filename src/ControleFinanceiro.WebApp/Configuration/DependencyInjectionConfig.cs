@@ -23,7 +23,7 @@ namespace ControleFinanceiro.WebApp.Configurations
             services.AddScoped(x => (ICookieAuthenticationStateProvider)x.GetRequiredService<AuthenticationStateProvider>());
 
             // THEME
-            services.AddMudServices();
+            //services.AddMudServices();
         }
     }
 }

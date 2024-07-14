@@ -1,12 +1,10 @@
-using ControleFinanceiro.Core.Handlers;
 using ControleFinanceiro.WebApp;
 using ControleFinanceiro.WebApp.Configurations;
-using ControleFinanceiro.WebApp.Handlers;
 using ControleFinanceiro.WebApp.Security;
-using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
+using System.Globalization;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
@@ -18,6 +16,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddAuthorizationCore();
 builder.Services.ResolveDependencies();
 
+builder.Services.AddMudServices();
 
 
 builder.Services.AddHttpClient(WebConfiguration.HTTP_CLIENT_NAME, opt =>
@@ -27,6 +26,10 @@ builder.Services.AddHttpClient(WebConfiguration.HTTP_CLIENT_NAME, opt =>
 
 
 
+
+builder.Services.AddLocalization();
+CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
+CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("pt-BR");
 
 
 await builder.Build().RunAsync();

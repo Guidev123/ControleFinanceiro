@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ControleFinanceiro.Core
 {
-    public static class Configuration
+    public static class Configurations
     {
         public const int DEFAULT_STATUS_CODE = 200;
         public const int DEFAULT_PAGE_NUMBER = 1;

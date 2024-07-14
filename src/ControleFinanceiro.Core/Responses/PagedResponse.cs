@@ -15,7 +15,7 @@ namespace ControleFinanceiro.Core.Services
             TData? data,
             int totalCount,
             int currentPage = 1,
-            int pageSize = Configuration.DEFAULT_PAGE_SIZE)
+            int pageSize = Configurations.DEFAULT_PAGE_SIZE)
             : base(data)
         {
             Data = data;
@@ -26,7 +26,7 @@ namespace ControleFinanceiro.Core.Services
 
         public PagedResponse(
             TData? data,
-            int code = Configuration.DEFAULT_STATUS_CODE,
+            int code = Configurations.DEFAULT_STATUS_CODE,
             string? message = null)
             : base(data, code, message)
         {
@@ -34,7 +34,7 @@ namespace ControleFinanceiro.Core.Services
 
         public int CurrentPage { get; set; }
         public int TotalPages => (int)Math.Ceiling(TotalCount / (double)PageSize);
-        public int PageSize { get; set; } = Configuration.DEFAULT_PAGE_SIZE;
+        public int PageSize { get; set; } = Configurations.DEFAULT_PAGE_SIZE;
         public int TotalCount { get; set; }
     }
 }

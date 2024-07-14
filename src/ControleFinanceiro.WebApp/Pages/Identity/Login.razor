@@ -15,8 +15,8 @@
             <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
                 <DataAnnotationsValidator />
 
-                <MudTextField T="string" Label="E-mail" HelperText="Campo obrigatório" InputType="InputType.Email" For="@(() => InputModel.Email)" @bind-Value="InputModel.Email" />
-                <MudTextField T="string" Label="Senha" HelperText="Campo obrigatório" InputType="InputType.Password" For="@(() => InputModel.Password)" @bind-Value="InputModel.Password" />
+                <MudTextField Variant="Variant.Outlined" T="string" Label="E-mail" HelperText="Campo obrigatório" InputType="InputType.Email" For="@(() => InputModel.Email)" @bind-Value="InputModel.Email" />
+                <MudTextField Variant="Variant.Outlined" T="string" Label="Senha" HelperText="Campo obrigatório" InputType="InputType.Password" For="@(() => InputModel.Password)" @bind-Value="InputModel.Password" />
 
                 <div class="d-flex mt-8">
                     @if (IsBusy)

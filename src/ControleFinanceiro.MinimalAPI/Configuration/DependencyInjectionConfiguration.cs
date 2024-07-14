@@ -1,11 +1,14 @@
 ﻿using ControleFinanceiro.API.Handlers;
+using ControleFinanceiro.Core.Commands.Account;
 using ControleFinanceiro.Core.Handlers;
+using ControleFinanceiro.Core.Models.Account;
 using ControleFinanceiro.Data;
+using ControleFinanceiro.MinimalAPI.Handlers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
-namespace ControleFinanceiro.API.Configuration
+namespace ControleFinanceiro.MinimalAPI.Configuration
 {
     public static class DependencyInjectionConfiguration
     {
@@ -13,12 +16,8 @@ namespace ControleFinanceiro.API.Configuration
         {
 
             // HANDLER
-
             services.AddTransient<ICategoryHandler, CategoryHandler>();
             services.AddTransient<ITransactionHandler, TransactionHandler>();
-
-            // USER
-            services.AddScoped<ClaimsPrincipal>();
 
         }
     }

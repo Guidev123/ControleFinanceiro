@@ -19,10 +19,10 @@ namespace ControleFinanceiro.WebApp.Pages.Categories
         public ISnackbar Snackbar { get; set; } = null!;
 
         [Inject]
-        public ICategoryHandler Handler { get; set; } = null!;
+        public IDialogService DialogService { get; set; } = null!;
 
         [Inject]
-        public IDialogService DialogService { get; set; } = null!;
+        public ICategoryHandler Handler { get; set; } = null!;
 
         // METHODS
         protected override async Task OnInitializedAsync()
@@ -51,10 +51,10 @@ namespace ControleFinanceiro.WebApp.Pages.Categories
         }
         public async void OnDeleteButtonClickedAsync(long id, string title)
         {
-            var result = await DialogService.ShowMessageBox("Atenção", $"Ao prosseguir a categoria {title} será excluída. Deseja continuar?", yesText: "Excluir", cancelText: "Cancelar");
+            var result = await DialogService.ShowMessageBox("Atenção", $"Ao prosseguir a categoria {title} será excluída. Deseja continuar?",
+                yesText: "Excluir", cancelText: "Cancelar");
 
-            if (result is true)
-                await OnDeleteAsync(id, title);
+            if (result is true) await OnDeleteAsync(id, title);
 
             StateHasChanged();
         }
@@ -74,22 +74,15 @@ namespace ControleFinanceiro.WebApp.Pages.Categories
             }
         }
 
-
-
         public Func<Category, bool> Filter => category =>
         {
-            if (string.IsNullOrWhiteSpace(SearchTerm))
-                return true;
+            if (string.IsNullOrWhiteSpace(SearchTerm)) return true;
 
-            if (category.Id.ToString().Contains(SearchTerm, StringComparison.OrdinalIgnoreCase))
-                return true;
+            if (category.Id.ToString().Contains(SearchTerm, StringComparison.OrdinalIgnoreCase)) return true;
 
-            if (category.Title.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase))
-                return true;
+            if (category.Title.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase)) return true;
 
-            if (category.Description is not null &&
-                category.Description.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase))
-                return true;
+            if (category.Description is not null && category.Description.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase)) return true;
 
             return false;
         };
