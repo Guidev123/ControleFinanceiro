@@ -1,6 +1,6 @@
 <body>
     <h1>SaaS de Controle de Finanças Pessoais</h1>
-    <p>Bem-vindo ao projeto SaaS de Controle de Finanças Pessoais. Este projeto foi desenvolvido utilizando as seguintes tecnologias:</p>
+    <p>Bem-vindo ao projeto SaaS de Controle de Finanças Pessoais, no qual você pode analisar suas transações através de gráficos e filtrar as operações por mês e ano. Este projeto foi desenvolvido utilizando as seguintes tecnologias:</p>
     <ul>
         <li>ASP.NET Minimal APIs</li>
         <li>Blazor WASM PWA</li>
@@ -8,8 +8,12 @@
         <li>Identity</li>
         <li>EntityFramework</li>
         <li>SQL Server</li>
+        <li>Views SQL</li>
     </ul>
     <p>O projeto segue alguns princípios de CQRS, DDD e SOLID para garantir uma arquitetura robusta e escalável.</p>
+
+  <h2>Video Demo</h2>
+https://www.youtube.com/watch?v=mo0og7f-mUk
 
    <h2>Endpoints</h2>
     <h3>Categories</h3>
@@ -21,7 +25,8 @@
         <li><strong>GET</strong> <code>api/categories/{id}</code>: Busca uma categoria por Id</li>
     </ul>
     
-![Parte1Foto](https://github.com/user-attachments/assets/9f764142-a92f-47d8-bb76-6c1148ea42e3)
+
+![parte1fotoatt](https://github.com/user-attachments/assets/0201fd9f-3de2-4acd-a430-ee9347cfbc9b)
 
 
    <h3>Transactions</h3>
@@ -38,8 +43,6 @@
    <h3>Identity</h3>
     <p>Endpoints para autenticação e autorização do usuário</p>
     
-  <h2>Video Demo</h2>
-    https://www.youtube.com/watch?v=1aZSd5DyQWY
 
    <h2>Arquitetura</h2>
    
