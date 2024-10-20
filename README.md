@@ -3,7 +3,7 @@
     <p>Bem-vindo ao projeto SaaS de Controle de Finanças Pessoais, no qual você pode analisar suas transações através de gráficos e filtrar as operações por mês e ano. Este projeto foi desenvolvido utilizando as seguintes tecnologias:</p>
     <ul>
         <li>ASP.NET Minimal APIs</li>
-        <li>Blazor WASM PWA</li>
+        <li>Blazor WASM</li>
         <li>MudBlazor</li>
         <li>Identity</li>
         <li>EntityFramework</li>
